@@ -1,0 +1,32 @@
+.DS_Store
+
+node_modules
+/reports
+/bin
+/tmp
+/.envrc
+
+.vscode/*
+!.vscode/extensions.json
+!.vscode/*.recommended.json
+
+/*.log
+/*.log*
+/*.pid
+
+# Terraform input variables
+.terraform
+*.tfplan
+terraform.tfvars
+terraform.tfvars.json
+*.auto.tfvars
+*.auto.tfvars.json
+# Terraform output files
+terraform.tfoutput.json
+**/terraform.tfstate.d/**
+
+.env*.local
+
+.idea/
+*.iml
+*.ipr
