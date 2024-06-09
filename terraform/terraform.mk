@@ -44,20 +44,28 @@ endif
 .PHONY: tf.init
 
 ## Initialise terraform and upgrade dependencies
-tf.initUpgrade: tf.optsMod tf.optsBackend
+tf.init.upgrade: tf.optsMod tf.optsBackend
 	env TF_WORKSPACE=${TF_WORKSPACE} ./tools/terraform -chdir=terraform/modules/${TF_MODULE} init -upgrade ${TF_BACKEND_OPTS}
 ifneq ($(TF_WORKSPACE),)
 	$(MAKE) tf.workspace
 endif
-.PHONY: tf.initUpgrade
+.PHONY: tf.init.upgrade
 
-## Initialise terraform
-tf.initConfigure: tf.optsMod tf.optsBackend
+## Initialise terraform and reconfigure
+tf.init.reconfigure: tf.optsMod tf.optsBackend
 	env TF_WORKSPACE=${TF_WORKSPACE} ./tools/terraform -chdir=terraform/modules/${TF_MODULE} init -reconfigure ${TF_BACKEND_OPTS}
 ifneq ($(TF_WORKSPACE),)
 	$(MAKE) tf.workspace
 endif
-.PHONY: tf.initConfigure
+.PHONY: tf.init.reconfigure
+
+## Initialise terraform and reconfigure
+tf.init.migrate-state: tf.optsMod tf.optsBackend
+	env TF_WORKSPACE=${TF_WORKSPACE} ./tools/terraform -chdir=terraform/modules/${TF_MODULE} init -migrate-state ${TF_BACKEND_OPTS}
+ifneq ($(TF_WORKSPACE),)
+	$(MAKE) tf.workspace
+endif
+.PHONY: tf.init.migrate-state
 
 ## Set active terraform workspace
 tf.workspace: tf.optsMod tf.optsWorkspace
