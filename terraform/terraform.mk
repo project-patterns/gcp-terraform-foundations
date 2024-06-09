@@ -37,11 +37,27 @@ tf.optsWorkspace:
 
 ## Initialise terraform
 tf.init: tf.optsMod tf.optsBackend
-	env TF_WORKSPACE=${TF_WORKSPACE} ./tools/terraform -chdir=terraform/modules/${TF_MODULE} init -reconfigure ${TF_BACKEND_OPTS}
+	env TF_WORKSPACE=${TF_WORKSPACE} ./tools/terraform -chdir=terraform/modules/${TF_MODULE} init ${TF_BACKEND_OPTS}
 ifneq ($(TF_WORKSPACE),)
 	$(MAKE) tf.workspace
 endif
 .PHONY: tf.init
+
+## Initialise terraform and upgrade dependencies
+tf.initUpgrade: tf.optsMod tf.optsBackend
+	env TF_WORKSPACE=${TF_WORKSPACE} ./tools/terraform -chdir=terraform/modules/${TF_MODULE} init -upgrade ${TF_BACKEND_OPTS}
+ifneq ($(TF_WORKSPACE),)
+	$(MAKE) tf.workspace
+endif
+.PHONY: tf.initUpgrade
+
+## Initialise terraform
+tf.initConfigure: tf.optsMod tf.optsBackend
+	env TF_WORKSPACE=${TF_WORKSPACE} ./tools/terraform -chdir=terraform/modules/${TF_MODULE} init -reconfigure ${TF_BACKEND_OPTS}
+ifneq ($(TF_WORKSPACE),)
+	$(MAKE) tf.workspace
+endif
+.PHONY: tf.initConfigure
 
 ## Set active terraform workspace
 tf.workspace: tf.optsMod tf.optsWorkspace

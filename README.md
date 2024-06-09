@@ -39,15 +39,15 @@ make tf.apply MOD=bootstrap-projects
 ### Application modules
 
 ```sh
-# qa example-app-module
-make tf.init MOD=example-app-module BACKEND=nonprod WORK=qa
-make tf.plan MOD=example-app-module
-make tf.apply MOD=example-app-module
-make tf.destroy MOD=example-app-module
+# qa app-example-module
+make tf.init MOD=app-example-module BACKEND=nonprod WORK=qa
+make tf.plan MOD=app-example-module
+make tf.apply MOD=app-example-module
+make tf.destroy MOD=app-example-module
 
-# prod example-app-module
-make tf.init MOD=example-app-module BACKEND=prod WORK=prod
-make tf.plan MOD=example-app-module
-make tf.apply MOD=example-app-module
-make tf.destroy MOD=example-app-module
+# prod app-example-module
+make tf.init MOD=app-example-module BACKEND=prod WORK=prod
+make tf.plan MOD=app-example-module
+make tf.apply MOD=app-example-module
+make tf.destroy MOD=app-example-module
 ```
