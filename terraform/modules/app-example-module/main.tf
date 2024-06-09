@@ -1,5 +1,5 @@
 resource "google_storage_bucket" "example_app_module_bucket" {
-  project       = local.workspace.gcp_project
+  project       = local.workspace.gcp-project
   name          = "${local.prefix.module}-bucket"
   location      = "AU"
   storage_class = "STANDARD"
